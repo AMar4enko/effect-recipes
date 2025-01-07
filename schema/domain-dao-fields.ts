@@ -68,8 +68,7 @@ export const renameSchemaFields = <A, I, R>(s: S.Schema<A, I, R>) => {
          */
 
         const transformation = new FinalTransformation(
-          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-          (fromA: { [key: PropertyKey]: any }, options, self, fromI) => {
+          (fromA: { [key: PropertyKey]: unknown }, options, self, fromI) => {
             // Decode
             return Effect.succeed(
               Object.fromEntries(
@@ -81,8 +80,7 @@ export const renameSchemaFields = <A, I, R>(s: S.Schema<A, I, R>) => {
               ),
             )
           },
-          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-          (toI: { [key: PropertyKey]: any }, options, self, toA) => {
+          (toI: { [key: PropertyKey]: unknown }, options, self, toA) => {
             // Encode
             return Effect.succeed(
               Object.fromEntries(
@@ -93,11 +91,7 @@ export const renameSchemaFields = <A, I, R>(s: S.Schema<A, I, R>) => {
                   return [fieldName, toI[ps.name]]
                 }),
               ),
-            ) as unknown as Effect.Effect<
-              { [key: PropertyKey]: unknown },
-              ParseIssue,
-              never
-            >
+            )
           },
         )
 
