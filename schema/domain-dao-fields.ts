@@ -63,7 +63,7 @@ export const renameSchemaFields = <A, I, R>(s: S.Schema<A, I, R>) => {
          * In order to rename fields on encoded side, we need to introduce transformation
          * between encoded and decoded versions of the struct
          * such that for all properties, on encoded side their respective types are Unknown
-         * and on decoded side their values are recursively transformed.
+         * and on decoded side their respective types are recursively transformed.
          * Only properties with FieldName annotation are transformed.
          */
 
